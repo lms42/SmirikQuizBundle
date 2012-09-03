@@ -1,0 +1,131 @@
+<database name="default" namespace="Smirik\QuizBundle\Model" defaultIdMethod="native">
+  <table name="quiz" phpName="Quiz" idMethod="native">
+    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="title" type="VARCHAR" size="100" required="true"/>
+    <column name="description" type="CLOB" required="true"/>
+    <column name="time" type="INTEGER" required="true"/>
+    <column name="num_questions" type="INTEGER" required="true"/>
+    <column name="is_active" type="BOOLEAN" size="1" required="false"/>
+    <column name="is_opened" type="BOOLEAN" size="1" required="false"/>
+    <behavior name="timestampable" />
+  </table>
+  <table name="questions" phpName="Question" idMethod="native">
+    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="text" type="CLOB" required="false"/>
+    <column name="type" type="VARCHAR" size="50" required="false"/>
+    <column name="file" type="VARCHAR" size="255" required="false"/>
+    <column name="num_answers" type="INTEGER" required="true"/>
+    <behavior name="timestampable" />
+  </table>
+  <table name="quiz_questions" phpName="QuizQuestion" idMethod="native">
+    <column name="question_id" type="INTEGER" primaryKey="true" required="true"/>
+    <column name="quiz_id" type="INTEGER" primaryKey="true" required="true"/>
+    <foreign-key foreignTable="questions">
+      <reference local="question_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="quiz">
+      <reference local="quiz_id" foreign="id"/>
+    </foreign-key>
+    <index>
+      <index-column name="question_id"/>
+    </index>
+    <index>
+      <index-column name="quiz_id"/>
+    </index>
+  </table>
+  <table name="answers" phpName="Answer" idMethod="native">
+    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="question_id" type="INTEGER" required="true"/>
+    <column name="title" type="VARCHAR" size="255" required="false"/>
+    <column name="file" type="VARCHAR" size="255" required="false"/>
+    <column name="is_right" type="VARCHAR" size="255" required="false"/>
+    <foreign-key foreignTable="questions" onDelete="CASCADE">
+      <reference local="question_id" foreign="id"/>
+    </foreign-key>
+    <index>
+      <index-column name="question_id"/>
+    </index>
+  </table>
+  <table name="users_questions" phpName="UserQuestion" idMethod="native">
+    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="user_id" type="INTEGER" required="true"/>
+    <column name="quiz_id" type="INTEGER" required="true"/>
+    <column name="question_id" type="INTEGER" required="true"/>
+    <column name="user_quiz_id" type="INTEGER" required="true"/>
+    <column name="answer_id" type="INTEGER" required="false"/>
+    <column name="answer_text" phpName="AnswerText" type="VARCHAR" size="200" required="false"/>
+    <column name="is_right" type="BOOLEAN" size="1" required="false"/>
+    <column name="is_closed" type="BOOLEAN" size="1" required="false"/>
+    <foreign-key foreignTable="questions" onDelete="CASCADE">
+      <reference local="question_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="quiz" onDelete="CASCADE">
+      <reference local="quiz_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="fos_user" onDelete="CASCADE">
+      <reference local="user_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="answers" onDelete="CASCADE">
+      <reference local="answer_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="users_quiz" onDelete="CASCADE">
+      <reference local="user_quiz_id" foreign="id"/>
+    </foreign-key>
+    <index>
+      <index-column name="user_id"/>
+    </index>
+    <index>
+      <index-column name="quiz_id"/>
+    </index>
+    <index>
+      <index-column name="question_id"/>
+    </index>
+    <index>
+      <index-column name="user_quiz_id"/>
+    </index>
+    <index>
+      <index-column name="answer_id"/>
+    </index>
+  </table>
+  <table name="users_quiz" phpName="UserQuiz" idMethod="native">
+    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="user_id" type="INTEGER" required="true"/>
+    <column name="quiz_id" type="INTEGER" required="false"/>
+    <column name="questions" type="VARCHAR" size="255" required="true"/>
+    <column name="current" type="INTEGER" required="true"/>
+    <column name="num_right_answers" type="INTEGER" required="false"/>
+    <column name="started_at" type="TIMESTAMP" required="false"/>
+    <column name="stopped_at" type="TIMESTAMP" required="false"/>
+    <column name="is_active" type="BOOLEAN" size="1" required="false"/>
+    <column name="is_closed" type="BOOLEAN" size="1" required="false"/>
+    <behavior name="timestampable" />
+    <foreign-key foreignTable="quiz" onDelete="CASCADE">
+      <reference local="quiz_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="fos_user" onDelete="CASCADE">
+      <reference local="user_id" foreign="id"/>
+    </foreign-key>
+    <index>
+      <index-column name="user_id"/>
+    </index>
+    <index>
+      <index-column name="quiz_id"/>
+    </index>
+  </table>
+  <table name="users_groups" phpName="QuizUserGroup" idMethod="native">
+    <column name="group_id" type="INTEGER" primaryKey="true" required="true"/>
+    <column name="user_id" type="INTEGER" primaryKey="true" required="true"/>
+    <foreign-key foreignTable="fos_user">
+      <reference local="user_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="fos_group">
+      <reference local="group_id" foreign="id"/>
+    </foreign-key>
+    <index>
+      <index-column name="group_id"/>
+    </index>
+    <index>
+      <index-column name="user_id"/>
+    </index>
+  </table>
+</database>

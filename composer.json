@@ -1,0 +1,25 @@
+{
+    "name": "smirik/quiz-bundle",
+    "description": "Quiz bundle.",
+    "keywords": ["quiz"],
+    "homepage": "https://4xxi.com",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Evgeny Smirnov",
+            "email": "smirik@gmail.com",
+            "homepage": "http://4xxi.com"
+        }
+    ],
+    "require": {
+        "symfony/framework-bundle": "2.*"
+    },
+    "suggest": {
+        "symfony/twig-bundle": "2.*"
+    },
+    "autoload": {
+        "psr-0": { "Smirik\\QuizBundle": "" }
+    },
+    "target-dir": "Smirik/QuizBundle"
+}

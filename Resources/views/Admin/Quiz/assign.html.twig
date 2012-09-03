@@ -1,0 +1,38 @@
+{% extends 'SmirikAdminBundle::layout.html.twig' %}
+
+{% block title %}{{ 'admin.quiz.users.title'|trans }}{% endblock %}
+
+{% block header %}
+<h1>{{ 'admin.quiz.users.title'|trans }} <small>{{ 'admin.quiz.users.title.comment'|trans }}</small></h1>
+{% endblock %}
+
+{% block body %}
+  <div id="alerts">
+  </div>
+
+  <div class="alert alert-success" id="alert_template" style="display: none;">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>{{ 'Success'|trans }}!</strong> {{ 'admin.quiz.assign.alert.success'|trans }}
+  </div>
+  
+  <div id="content">
+  </div>
+  
+  <script language="JavaScript">
+    page         = '1';
+    route        = 'admin_users_index';
+    sort         = 'id';
+    sort_type    = 'asc';
+    filter       = '';
+    
+    success_text = "<strong>{{ 'Success'|trans }}!</strong> {{ 'admin.quiz.assign.alert.success'|trans }}";
+
+    $.get("{{ path('admin_users_index') }}", function(data) {
+      $('#content').html(data);
+    });
+  </script>
+  
+  <a href="#" onclick="assign({{ quiz.id }}, '{{ route }}', success_text)" class="btn">{{ 'admin.quiz.assign'|trans }}</a>
+  
+  
+{% endblock %}

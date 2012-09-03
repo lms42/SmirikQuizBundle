@@ -1,0 +1,200 @@
+# Base translations
+quiz.form.actions.create: Создать
+quiz.form.actions.edit:   Редактировать
+quiz.form.actions.back:   Вернуться
+quiz.form.actions.delete: Удалить
+quiz.form.actions.save :  Сохранить
+quiz: тест
+
+Number of questions: Количество вопросов
+Active: включен
+Opened: публичный
+Is opened: Открытый
+
+admin.quiz.form.actions:        Действия
+admin.quiz.form.created_at:     Создан
+
+quiz.home: На главную
+quiz.select: Выбрать тест
+
+# Quiz translations
+
+admin.quiz.menu:               Тесты
+admin.quiz.quizes:             Список тестов
+admin.quiz.users.menu:         Активировать тесты
+
+admin.quiz.list.page_title:    Тесты
+admin.quiz.list.title.comment: список
+admin.quiz.list.id:            Id
+admin.quiz.list.title:         Заголовок
+admin.quiz.list.description:   Описание
+admin.quiz.list.num_questions: Кол-во вопросов
+admin.quiz.list.is_active:     Активен?
+admin.quiz.list.created_at:    Добавлен
+admin.quiz.list.actions:       Действия
+admin.quiz.action.create:      Добавить
+admin.quiz.action.show:        Посмотреть
+admin.quiz.action.edit:        Изменить
+admin.quiz.action.questions:   Вопросы
+admin.quiz.users.title:        Назначить
+admin.quiz.users.title.comment:  пользователей
+Success: Ура!
+admin.quiz.assign.alert.success: Пользователи успешно назначены
+admin.quiz.assign:               Назначить
+
+Username: Имя
+Email:    E-mail
+Enabled:  Активен
+
+# Edit page
+admin.quiz.edit.page_title:    Тесты
+admin.quiz.edit.title.comment: редактирование
+
+# Create page
+admin.quiz.create.page_title:    Тесты
+admin.quiz.create.title.comment: создание
+
+# Quiz statuses
+quiz.status.active:       активен
+quiz.status.disabled:     выключен
+quiz.status.opened:       открыт
+quiz.status.closed:       закрыт
+quiz.status.timeable:     временной
+quiz.status.without_time: неограниченный
+
+# Admin questions
+admin.questions.edit.page_title:    Вопрос
+admin.questions.edit.title.comment: редактирование 
+
+admin.questions.create.page_title:    Вопрос
+admin.questions.create.title.comment: создание
+
+admin.quiz.question.form.table:        Ответы
+admin.quiz.question.form.table.title:  Ответ 
+admin.quiz.question.form.table.file:   Файл
+admin.quiz.question.form.table.answer: Правильный ответ
+
+form.Smirik quizbundle questiontype: " "
+
+# Admin Forms
+# Quiz Form
+form.Title:         Заголовок
+form.Description:   Описание
+form.Time:          Продолжительность
+form.Num questions: Количество вопросов
+form.Is active:     Включен?
+form.Is opened:     Публичный?
+
+# Question form
+form.Quiz:   Тест
+form.Quizes: Тесты
+form.Text:   Текст вопроса
+form.Type:   Тип вопроса
+form.File:   Файл
+form.Num answers: Количество ответов
+
+# Answer form
+form.Answers: Форма ответов
+form.0: Ответ 1
+form.1: Ответ 2
+form.2: Ответ 3
+form.3: Ответ 4
+form.Is right: Правильный?
+form.V file: Файл
+
+# Users form
+users.quiz.connection.created: Тесты для указанных пользователей активированы.
+
+# Questions translations
+
+admin.questions.list.page_title:    Вопросы
+admin.questions.list.title.comment: список
+
+admin.questions.list.quiz: Тест
+admin.questions.list.text: Вопрос
+admin.questions.list.type: Тип вопроса
+
+# Quiz frontend
+
+# index page
+quiz.index.link:                Список тестов
+quiz.index.page_title:          Список тестов
+quiz.index.title.comment:       доступных для прохождения
+quiz.index.table.header.quiz:   Тест
+quiz.index.table.header.start:  Действие
+quiz.index.table.header.status: Статус
+quiz.index.table.start_link:    Начать
+quiz.index.table.continue_link: Продолжить
+quiz.index.my_link:             Мои тесты
+quiz.quiz.active:               активен
+quiz.quiz.success:              доступен
+
+# my quiz page 
+quiz.my.page_title:      Мои тесты
+quiz.my.title.comment:   cписок
+quiz.my.active_tests:    Активные тесты
+quiz.my.avaliable_tests: Доступные тесты
+quiz.my.completed_tests: Пройденные тесты
+quiz.my.table.header.num_right_answers: Правильных ответов
+quiz.my.table.header.percent:    %
+quiz.my.table.header.started_at: Дата прохождения
+
+# start page
+quiz.start.page_title:    Начало
+quiz.start.title.comment: теста
+quiz.start.start_link:    Поехали!
+
+# question page
+quiz.question.page_title:    Прохождение теста
+quiz.question.title.comment: прохождение
+quiz.question.submit:        Ответить
+quiz.question.previous:      Назад
+quiz.question.next:          Вперёд
+quiz.question.timeleft:      Осталось
+quiz.question.min:           мин.
+quiz.question.sec:           сек.
+
+# prefinal page
+quiz.prefinal.page_title:    Завершение теста
+quiz.prefinal.title.comment: последний шаг
+quiz.prefinal.note:          "Вы ответили на все вопросы теста. Если Вы нажмёте кнопку Завершить, то тест закончится, и Вы не сможете изменить результат. Если Вы не уверены в каком-либо вопросе, нажмите кнопку Вернуться."
+quiz.prefinal.back:          Вернуться
+quiz.prefinal.finish:        Закончить тест
+
+# final page
+quiz.final.page_title:            Результаты
+quiz.final.title.comment:         Результаты
+quiz.final.total_questions:       Всего вопросов в тесте
+quiz.final.right_answers:         Правильно отвечено
+quiz.final.percent:               Процент правильно отвеченных
+quiz.final.questions_with_errors: Вопросы, в которых были сделаны ошибки
+quiz.final.errors_note:           "Здесь указаны названия вопросов, в которых были сделаны ошибки. Если Вы не отвечали на какой-либо вопрос, он не указывается в списке."
+
+# admin users page
+admin.users.index.page_title:    Тестирование пользователей
+admin.users.index.title.comment: закрытые тесты
+admin.users.index.choose_group:  Выбрать группу
+admin.users.list.check:          "#"
+admin.users.list.id:             Id
+admin.users.list.name:           Логин
+admin.users.list.actions:        Действия
+admin.users.index.connect_with:  Добавить в тест
+admin.users.index.submit:        Далее
+admin.users.select.no_group:     Все
+
+# admin sub navigation
+admin.quiz.navigation.home:       Главная
+admin.quiz.navigation.quizes:     Тесты
+admin.quiz.navigation.questions:  Вопросы
+admin.quiz.navigation.users_quiz: Запись пользователей
+admin.quiz.navigation.groups:     Группы
+admin.quiz.navigation.content:    SonataAdmin
+
+File: Файл
+Is right: Правильно?
+Num answers: Количество ответов
+Quiz: Тест
+Num questions: Количество вопросов
+Time: время (с)
+Is active: Активен
+Is public: Открытый

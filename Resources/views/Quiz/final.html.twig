@@ -1,0 +1,46 @@
+{% extends 'SmirikQuizBundle::layout.html.twig' %}
+
+{% block title %}{{ 'quiz.final.page_title'|trans }}{% endblock %}
+
+{% block header %}
+<h1>{{ 'quiz.final.page_title'|trans }} <small>{{ user_quiz.quiz.title }}</small></h1>
+{% endblock %}
+
+{% block body %}
+
+<div class="final_results">
+  <table class="table table-striped table-bordered">
+    <tr>
+      <th>Параметр</th>
+      <th>Значение</th>
+    </tr>
+    <tr>
+      <td>{{ 'quiz.final.total_questions'|trans }}</td>
+      <td>{{ user_quiz.quiz.numquestions }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'quiz.final.right_answers'|trans }}</td>
+      <td>{{ user_quiz.numrightanswers }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'quiz.final.percent'|trans }}</td>
+      <td>{{ user_quiz.numrightanswers * 100 // user_quiz.quiz.numquestions}}%</td>
+    </tr>
+  </table>
+  
+  <h3>{{ 'quiz.final.questions_with_errors'|trans }}</h3>
+  <p>
+    {{ 'quiz.final.errors_note'|trans }}
+  </p>
+  <ul>
+    {% for user_question in user_quiz.userquestions %}
+      {% if user_question.isright == 0 %}
+        <li class="black">{{ user_question.question.text | raw }}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+
+<a href="{{ path('smirik_quiz_index') }}" class="btn">{{ 'quiz.home'|trans }}</a>
+
+{% endblock %}

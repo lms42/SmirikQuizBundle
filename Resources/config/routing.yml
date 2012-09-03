@@ -1,0 +1,51 @@
+admin_quiz_index:
+  pattern: /quiz
+  defaults: { _controller: SmirikQuizBundle:AdminQuiz:index, page: 1 }
+
+admin_quiz_list:
+  pattern: /quiz/{page}
+  defaults: { _controller: SmirikQuizBundle:AdminQuiz:index, page: 1 }
+  requirements:
+    page:   \d+
+
+admin_quiz_edit:
+  pattern: /quiz/{id}/edit
+  defaults: { _controller: SmirikQuizBundle:AdminQuiz:edit }
+  requirements:
+    id:   \d+
+
+admin_quiz_delete:
+  pattern: /quiz/{id}/delete
+  defaults: { _controller: SmirikQuizBundle:AdminQuiz:delete }
+  requirements:
+    id:   \d+
+
+admin_quiz_new:
+  pattern: /quiz/new
+  defaults: { _controller: SmirikQuizBundle:AdminQuiz:new }
+
+admin_questions_index:
+  pattern: /questions
+  defaults: { _controller: SmirikQuizBundle:AdminQuestion:index, page: 1 }
+
+admin_questions_list:
+  pattern: /questions/{page}
+  defaults: { _controller: SmirikQuizBundle:AdminQuestion:index, page: 1 }
+  requirements:
+    page:   \d+
+
+admin_questions_edit:
+  pattern: /questions/{id}/edit
+  defaults: { _controller: SmirikQuizBundle:AdminQuestion:edit }
+  requirements:
+    id:   \d+
+
+admin_questions_delete:
+  pattern: /questions/{id}/delete
+  defaults: { _controller: SmirikQuizBundle:AdminQuestion:delete }
+  requirements:
+    id:   \d+
+
+admin_questions_new:
+  pattern: /questions/new
+  defaults: { _controller: SmirikQuizBundle:AdminQuestion:new }

@@ -1,0 +1,7 @@
+services:
+  quiz.manager:
+    class: Smirik\QuizBundle\Model\QuizManager
+  quiz.configure_menu_listener:
+      class: Smirik\QuizBundle\Listener\ConfigureMenuListener
+      tags:
+        - { name: kernel.event_listener, event: smirik_admin.menu_configure, method: onMenuConfigure }    

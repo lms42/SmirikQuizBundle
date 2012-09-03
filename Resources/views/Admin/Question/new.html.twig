@@ -1,0 +1,21 @@
+{% extends 'SmirikQuizBundle:Admin:layout.html.twig' %}
+
+{% block header %}
+<h1>{{ 'admin.questions.create.page_title'|trans }} <small>{{ 'admin.questions.create.title.comment'|trans }}</small></h1>
+{% endblock %}
+
+{% block body %}
+
+<form class="form-horizontal" action="{{ path('smirik_quiz_admin_questions_create') }}" method="post" {{ form_enctype(form) }} >
+  <fieldset>
+    {{ form_widget(form) }}
+    <div class="well">
+      <a href="{{ path('smirik_quiz_admin_questions', { 'quiz_id': quiz_id }) }}" class="btn">
+        {{ 'admin.action.back'|trans }}
+      </a>
+      <button type="submit" class="btn btn-primary">{{ 'admin.form.action.create'|trans }}</button>
+    </div>
+  </fieldset>
+</form>
+
+{% endblock %}

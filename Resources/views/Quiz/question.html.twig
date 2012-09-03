@@ -1,0 +1,83 @@
+{% extends 'SmirikQuizBundle::layout.html.twig' %}
+
+{% block title %}{{ 'quiz.question.page_title'|trans }}{% endblock %}
+
+{% block header %}
+<h1>{{ quiz.title }} <small>{{ 'quiz.question.title.comment'|trans }}</small></h1>
+{% endblock %}
+
+{% block body %}
+
+{% if quiz.time > 0 %}
+
+<script language="JavaScript">
+window.setInterval(function() {
+  sec = $('#remainder_sec').html();
+  min = $('#remainder_min').html();
+  
+  if (sec == 0)
+  {
+    sec = 59;
+    min = min-1;
+  } else
+  {
+    sec = sec-1;
+  }
+  
+  $('#remainder_sec').text(sec);
+  $('#remainder_min').text(min);
+  
+  if ((min == 0) && (sec <= 0))
+  {
+    window.location.href = "{{ path('smirik_quiz_final', {'user_quiz_id': user_quiz.id }) }}";
+  }
+}, 1000);
+</script>
+
+<div id="remainder">
+  {{ 'quiz.question.timeleft'|trans }} 
+  <span id="remainder_min">{{ user_quiz.countTimeLeft['min'] }}</span> {{ 'quiz.question.min'|trans }}
+  <span id="remainder_sec">{{ user_quiz.countTimeLeft['sec'] }}</span> {{ 'quiz.question.sec'|trans }}
+</div>
+{% endif %}
+
+<h3>#{{number+1}}.</h3>
+<div class="question_text">
+   {{ question.text | raw }}
+</div>
+
+{% if question.file %}
+  <div class="question_image">
+    <img src="{{ asset(question.webPath) }}" alt="{{ question.text }}">
+  </div>
+{% endif %}
+
+<form action="{{ path('smirik_quiz_check') }}" method="POST">
+  <div class="question">
+    <input type="hidden" name="question_id" value="{{ question.id }}">
+    <input type="hidden" name="user_quiz_id" value="{{ user_quiz.id }}">
+    <input type="hidden" name="number" value="{{ number }}">
+    {% if num_answers > 1 %}
+      <ul class="unstyled answers">
+      {% for answer in answers %}
+        <li><input type="radio" name="answer_id" value="{{ answer.id }}" required {% if current_answer == answer.id %}checked{% endif %}><span class="answer_text">{{ answer.title | raw }}</span></li>
+      {% endfor %} 
+      </ul>
+    {% else %}
+      {% for answer in answers %}
+        <input type="hidden" name="answer_id" value="{{ answer.id }}">
+      {% endfor %}
+      <input type="input" class="span6" name="answer_text" value="">
+    {% endif %}
+    <button class="btn large primary">{{ 'quiz.question.submit'|trans }}</button>
+   </div>
+</form>
+
+{% if number > 0 %}
+  <a href="{{ path('smirik_quiz_go', {'uq_id': user_quiz.id, 'number': number-1 }) }}" class="btn">{{ 'quiz.question.previous'|trans }}</a>
+{% endif %}
+{% if (number+1) < total %}
+  <a href="{{ path('smirik_quiz_go', {'uq_id': user_quiz.id, 'number': number+1 }) }}" class="btn">{{ 'quiz.question.next'|trans }}</a>
+{% endif %}
+
+{% endblock %}
