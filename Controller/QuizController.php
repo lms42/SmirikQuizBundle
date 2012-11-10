@@ -39,35 +39,36 @@ class QuizController extends Controller
   public function indexAction()
   {
     $user = $this->container->get('security.context')->getToken()->getUser();
-    
-		$active_quiz = UserQuizQuery::create()
-			->filterByUserId($user->getId())
-			->filterByIsActive(true)
-			->filterByIsClosed(false)
-			->find();
+
+    $active_quiz = UserQuizQuery::create()
+    	->filterByUserId($user->getId())
+    	->filterByIsActive(true)
+    	->filterByIsClosed(false)
+    	->find();
 
     /**
-     * Get quiz ids for active quizes
-     */
+    * Get quiz ids for active quizes
+    */
     $active_quiz_ids = array();
     if ($active_quiz)
     {
-      foreach ($active_quiz as $quiz)
-      {
-        $active_quiz_ids[] = $quiz->getQuizId();
-      }
+        foreach ($active_quiz as $quiz)
+        {
+            $active_quiz_ids[] = $quiz->getQuizId();
+        }
     }
 
-		$avaliable_quiz = QuizQuery::create()->filterByIsOpened(true)->find();
+    $avaliable_quiz = QuizQuery::create()->filterByIsOpened(true)->find();
     $completed_users_quiz = UserQuizQuery::create()
-			->filterByIsClosed(true)
-			->find();
-    
+        ->filterByUserId($user->getId())
+    	->filterByIsClosed(true)
+    	->find();
+
     return array(
-      'users_quiz'      => $active_quiz,
-      'active_quiz_ids' => $active_quiz_ids,
-      'avaliable_quiz'  => $avaliable_quiz,
-      'completed_users_quiz'  => $completed_users_quiz,
+        'users_quiz'      => $active_quiz,
+        'active_quiz_ids' => $active_quiz_ids,
+        'avaliable_quiz'  => $avaliable_quiz,
+        'completed_users_quiz'  => $completed_users_quiz,
     );
   }
 
