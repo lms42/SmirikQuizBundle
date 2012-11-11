@@ -1,0 +1,35 @@
+{% extends 'SmirikCourseBundle::layout.html.twig' %}
+
+{% block title %}{{ 'Quizes results'|trans }}{% endblock %}
+
+{% block header %}
+<h1>{{ 'Quizes'|trans }} <small>{{ 'results'|trans }}</small></h1>
+{% endblock %}
+
+{% block content %}
+
+  <h3>{{ 'Quizes'|trans }}</h3>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>{{ 'Title'|trans }}</th>
+        <th>{{ 'Correct answers'|trans }}</th>
+        <th>{{ 'Number of questions'|trans }}</th>
+        <th>%</th>
+        <th>{{ 'Date'|trans }}</th>
+      </tr>
+    </thead>
+    {% for user_quiz in user_quizes %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ user_quiz.Quiz.title }}</td>
+        <td>{{ user_quiz.numRightAnswers }}</td>
+        <td>{{ user_quiz.Quiz.numQuestions }}</td>
+        <td>{{ '%10.0f'|format(user_quiz.numRightAnswers / user_quiz.Quiz.numQuestions * 100) }}%</td>
+        <td>{{ user_quiz.createdAt('Y-m-d H:i') }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+{% endblock %}

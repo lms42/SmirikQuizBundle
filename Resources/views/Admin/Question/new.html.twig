@@ -4,7 +4,7 @@
 <h1>{{ 'admin.questions.create.page_title'|trans }} <small>{{ 'admin.questions.create.title.comment'|trans }}</small></h1>
 {% endblock %}
 
-{% block body %}
+{% block content %}
 
 <form class="form-horizontal" action="{{ path('smirik_quiz_admin_questions_create') }}" method="post" {{ form_enctype(form) }} >
   <fieldset>

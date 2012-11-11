@@ -37,12 +37,14 @@ class UserQuestion extends BaseUserQuestion {
       {
         $this->setIsRight(false);
       }
+      $this->setAnswerText($answer_text);
     } else
     {
       $this->setIsRight($answer->getIsRight());
     }
     $this->setAnswer($answer);
-		$this->save();
+    $this->setAnswerText($answer_text);
+    $this->save();
   }
 
 } // UserQuestion

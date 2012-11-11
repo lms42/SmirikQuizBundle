@@ -40,10 +40,9 @@ class UserQuiz extends BaseUserQuiz {
 		 */
 		$now = time();
 		$quiz_time = $this->getQuiz()->getTime();
-
 		if ($quiz_time > 0)
 		{
-		  $diff = strtotime($now - strtotime($this->getStartedAt('Y-m-d H:i:s')));
+		  $diff = ($now - strtotime($this->getStartedAt('Y-m-d H:i:s')));
 		  if ($diff > $quiz_time)
 		  {
 		    return false;
@@ -61,7 +60,6 @@ class UserQuiz extends BaseUserQuiz {
 			 */
 			$this->setStoppedAt(new \DateTime('now'));
 			$this->setIsClosed(true);
-
 			/**
 			 * Calculating the number of right answers
 			 * Also close users_questions
@@ -102,7 +100,7 @@ class UserQuiz extends BaseUserQuiz {
 
 	  if ($left_sec <= 0)
 	  {
-	    return array(0, 0);
+	    return array('min' => 0, 'sec' => 0);
 	  } 
 
 	  $min = (int)($left_sec/60);

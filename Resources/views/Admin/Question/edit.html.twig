@@ -6,7 +6,7 @@
 <h1>{{ 'admin.questions.edit.page_title'|trans }} <small>{{ 'admin.questions.edit.title.comment'|trans }}</small></h1>
 {% endblock %}
 
-{% block body %}
+{% block content %}
 
 <form class="form form-horizontal" action="{{ path(routes.update, {"id": form.vars.value.id }) }}" method="post">
   <div class="well">
