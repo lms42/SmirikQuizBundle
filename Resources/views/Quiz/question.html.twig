@@ -49,9 +49,11 @@ window.setInterval(function() {
 </div>
 
 {% if question.file %}
-  <div class="question_image">
-    <img src="{{ asset(question.webPath) }}" alt="{{ question.text }}">
-  </div>
+    <div class="question_image">
+        {% if false %}
+            <img src="{{ asset(question.webPath) }}" alt="{{ question.text }}">
+        {% endif %}
+    </div>
 {% endif %}
 
 <form action="{{ path('smirik_quiz_check') }}" method="POST" autocomplete="off">

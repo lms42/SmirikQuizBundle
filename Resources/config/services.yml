@@ -3,7 +3,7 @@ services:
     class: Smirik\QuizBundle\Model\QuizManager
   quiz.configure_menu_listener:
       class: Smirik\QuizBundle\Listener\ConfigureMenuListener
-      arguments: ["@security.context"]
+      arguments: ["@security.context", "@translator"]
       tags:
         - { name: kernel.event_listener, event: admin.menu_configure, method: onMenuConfigure }    
         - { name: kernel.event_listener, event: main.menu_configure, method: onMainMenuConfigure }    

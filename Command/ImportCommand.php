@@ -8,16 +8,17 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Smirik\QuizBundle\Entity\Quiz;
-use Smirik\QuizBundle\Entity\Question;
-use Smirik\QuizBundle\Entity\Answer;
+use Smirik\QuizBundle\Model\QuizQuery;
+use Smirik\QuizBundle\Model\Quiz;
+use Smirik\QuizBundle\Model\Question;
+use Smirik\QuizBundle\Model\Answer;
 
 class ImportCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
         $this
-            ->setName('smirik:quiz:import')
+            ->setName('quiz:import')
             ->setDescription('Import quiz data')
             ->addOption('file', null, InputOption::VALUE_REQUIRED, 'Full path to file')
             ->addOption('debug', null, InputOption::VALUE_NONE, 'Do not add to database')
@@ -28,8 +29,6 @@ class ImportCommand extends ContainerAwareCommand
     {
       $file  = $input->getOption('file');
       $debug = $input->getOption('debug');
-
-      $em = $this->getContainer()->get('doctrine')->getEntityManager();
 
       $output->writeln('<info>Starting import.</info>');
       
@@ -48,73 +47,76 @@ class ImportCommand extends ContainerAwareCommand
         
         if ($data[0] == 'quiz')
         {
-          /**
-           * Creating new Quiz
-           */
-          $quiz = new Quiz();
-          $quiz->setTitle($data[1]);
-          $quiz->setDescription($data[2]);
-          $quiz->setTime($data[3]);
-          $quiz->setNumQuestions($data[4]);
-          $quiz->setIsActive($data[5]);
-          $quiz->setIsOpened($data[6]);
-          
-          if ($debug)
-          {
-            $output->writeln('<comment>Create quiz '.$data[1].'</comment>');
-          } else
-          {
-            $em->persist($quiz);
-            $em->flush();
-          }
+            if ($data[1] == 'new')
+            {
+                /**
+                 * Creating new Quiz
+                 */
+                $quiz = new Quiz();
+                $quiz->setTitle($data[1]);
+                $quiz->setDescription($data[2]);
+                $quiz->setTime($data[3]);
+                $quiz->setNumQuestions($data[4]);
+                $quiz->setIsActive($data[5]);
+                $quiz->setIsOpened($data[6]);
+
+                if ($debug)
+                {
+                    $output->writeln('<comment>Create quiz '.$data[1].'</comment>');
+                } else
+                {
+                    $quiz->save();
+                }
+            } else
+            {
+                $quiz = QuizQuery::create()->findPk((int)$data[1]);
+            }
         }
         
         if ($data[0] == 'question')
         {
-          /**
-           * Creating question
-           * Structure: type of record, title, type, file, number of answers, 
-           */
-          $question = new Question();
-          $question->addQuiz($quiz);
-          $question->setText($data[1]);
-          $question->setType($data[2]);
-          if ($data[3] != '')
-          {
-            $question->setFile($data[3]);
-          }
-          $question->setNumAnswers($data[4]);
-          
-          if ($debug)
-          {
-            $output->writeln('<comment>Add question '.$question->getText()."</comment>");
-          } else
-          {
-            $em->persist($question);
-            $em->flush();
-          }
+            /**
+            * Creating question
+            * Structure: type of record, title, type, file, number of answers, 
+            */
+            $question = new Question();
+            $question->addQuiz($quiz);
+            $question->setText($data[1]);
+            $question->setType($data[2]);
+            if ($data[3] != '')
+            {
+                $question->setFile($data[3]);
+            }
+            $question->setNumAnswers($data[4]);
+
+            if ($debug)
+            {
+                $output->writeln('<comment>Add question '.$question->getText()."</comment>");
+            } else
+            {
+                $question->save();
+            }
           
           /**
            * question;Укажите число C, такое что A<C<B, где A=2003<sub>4</sub>, B=b1<sub>12</sub>;radio;;4;answer;1000110<sub>2</sub>;;0;204<sub>8</sub>;;1;11210<sub>3</sub>;;0;85<sub>16</sub>;;0;;;
            * Add answers 
            */ 
-          for ($i=0; $i<$data[4]; $i++)
-          {
-            $answer = new Answer();
-            $answer->setQuestion($question);
-            $answer->setTitle($data[6+$i*3]);
-            $answer->setFile($data[7+$i*3]);
-            $answer->setIsRight($data[8+$i*3]);
-            
-            if ($debug)
+            for ($i=0; $i<$data[4]; $i++)
             {
-              $output->writeln('<comment>Add answer '.$answer->getTitle()."</comment>");
-            } else
-            {
-              $em->persist($answer);
-              $em->flush();
+                $answer = new Answer();
+                $answer->setQuestionId($question->getId());
+                $answer->setTitle($data[6+$i*3]);
+                $answer->setFile($data[7+$i*3]);
+                $answer->setIsRight($data[8+$i*3]);
+
+                if ($debug)
+                {
+                    $output->writeln('<comment>Add answer '.$answer->getTitle()."</comment>");
+                } else
+                {
+                    $answer->save();
+                }
             }
-          }
           
            
         }

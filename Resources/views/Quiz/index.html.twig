@@ -8,7 +8,7 @@
 
 {% block content %}
 
-{% if users_quiz|length %}
+{% if users_quiz|length or avaliable_quiz|length %}
     <h3>{{ 'quiz.my.active_tests'|trans }}</h3>
 
     <table class="table table-striped table-bordered">

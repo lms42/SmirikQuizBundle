@@ -17,7 +17,7 @@
     <column name="num_answers" type="INTEGER" required="true"/>
     <behavior name="timestampable" />
   </table>
-  <table name="quiz_questions" phpName="QuizQuestion" idMethod="native">
+  <table name="quiz_questions" phpName="QuizQuestion" idMethod="native" isCrossRef="true">
     <column name="question_id" type="INTEGER" primaryKey="true" required="true"/>
     <column name="quiz_id" type="INTEGER" primaryKey="true" required="true"/>
     <foreign-key foreignTable="questions">
