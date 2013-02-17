@@ -8,11 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Smirik\PropelAdminBundle\Controller\AdminAbstractController as AbstractController;
 
-use Smirik\PropelAdminBundle\Column\Column;
-use Smirik\PropelAdminBundle\Column\CollectionColumn;
-use Smirik\PropelAdminBundle\Action\Action;
-use Smirik\PropelAdminBundle\Action\ObjectAction;
-use Smirik\PropelAdminBundle\Action\SingleAction;
 
 class AdminQuestionController extends AbstractController
 {
