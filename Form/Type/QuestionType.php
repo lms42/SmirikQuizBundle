@@ -11,29 +11,18 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add(
-            'quiz',
-            'model',
-            array(
-                'class' => 'Smirik\QuizBundle\Model\Quiz',
-                'multiple' => true,
-                'required' => false,
-            )
-        )
+            ->add('quiz', 'model', array(
+                    'class' => 'Smirik\QuizBundle\Model\Quiz',
+                    'multiple' => true,
+                    'required' => false,
+                 ))
             ->add('text')
-            ->add(
-            'type',
-            'choice',
-            array(
+            ->add('type', 'choice', array(
                 'choices' => array('text' => 'text', 'radio' => 'radio')
-            )
-        )
+            ))
             ->add('file', 'file', array('required' => false))
             ->add('num_answers')
-            ->add(
-            'answers',
-            'collection',
-            array(
+            ->add('answers', 'collection', array(
                 'type' => new \Smirik\QuizBundle\Form\Type\AnswerType(),
                 'allow_add' => true,
                 'allow_delete' => true,
@@ -55,4 +44,3 @@ class QuestionType extends AbstractType
     }
 
 }
-

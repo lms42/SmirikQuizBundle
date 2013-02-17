@@ -19,46 +19,7 @@ class AdminQuestionController extends AbstractController
 	
 	public $layout = 'SmirikAdminBundle::layout.html.twig';
 	public $name   = 'questions';
-
-	public function setup()
-	{
-		$this->configure(array(
-								     array('name' => 'id', 'label' => 'Id', 'type' => 'integer', 'options' => array(
-												 'editable' => false,
-												 'listable' => true,
-												 'sortable' => true,
-												 'filterable' => true)),
-							       array('name' => 'test', 'label' => 'Quiz', 'type' => 'text', 'options' => array(
-											 'editable' => false,
-											 'listable' => true,
-											 'sortable' => true,
-											 'filterable' => true)),
-		                 array('name' => 'text', 'label' => 'Text', 'type' => 'text', 'options' => array(
-											 'editable' => true,
-											 'listable' => true,
-											 'sortable' => true,
-											 'filterable' => true)),
-										 array('name' => 'type', 'label' => 'Type', 'type' => 'string', 'options' => array(
-											 'editable' => true,
-											 'listable' => true,
-											 'sortable' => true,
-											 'filterable' => true)),
-										 array('name' => 'file', 'label' => 'File', 'type' => 'string', 'options' => array(
-											 'editable' => true,
-											 'listable' => false,
-											 'sortable' => true,
-											 'filterable' => true)),
-										 array('name' => 'num_answers', 'label' => 'Number of answers', 'type' => 'integer', 'options' => array(
-											 'editable' => true,
-											 'listable' => true,
-											 'sortable' => true,
-											 'filterable' => true))
-		                 ),
-		                 array('new' => new SingleAction('New', 'new', 'admin_questions_new', true),
-											'edit' => new ObjectAction('Edit', 'edit', 'admin_questions_edit', true),
-											'delete' => new ObjectAction('Delete', 'delete', 'admin_questions_delete', true, true))
-		                );
-	}
+    public $bundle = 'SmirikQuizBundle';
 
 	public function getQuery()
 	{
@@ -106,7 +67,7 @@ class AdminQuestionController extends AbstractController
 			'layout' => $this->layout,
 			'object' => $this->object,
 			'form'   => $form->createView(),
-			'columns' => $this->columns,
+			'columns' => $this->grid->getColumns(),
 			'routes' => $this->routes,
 		);
 	}

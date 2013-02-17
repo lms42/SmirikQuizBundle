@@ -3,70 +3,71 @@
 {% block title %}{{ 'admin.questions.edit.page_title'|trans }}{% endblock %}
 
 {% block header %}
-<h1>{{ 'admin.questions.edit.page_title'|trans }} <small>{{ 'admin.questions.edit.title.comment'|trans }}</small></h1>
+    <h1>{{ 'admin.questions.edit.page_title'|trans }}
+        <small>{{ 'admin.questions.edit.title.comment'|trans }}</small>
+    </h1>
 {% endblock %}
 
 {% block content %}
 
-<form class="form form-horizontal" action="{{ path(routes.update, {"id": form.vars.value.id }) }}" method="post">
-  <div class="well">
-    
-        {{ form_errors(form) }}
-    
-        {{ form_row(form.quiz) }}
-        {{ form_row(form.text) }}
-        {{ form_row(form.type) }}
-        {{ form_row(form.file) }}
-        {{ form_row(form.num_answers) }}
-      <hr>
-      <div id="answers">
-      {% for answer in form.answers %}
-        <div class="form-content-answer">
-          <a class="btn btn-danger pull-right delete" href="#">{{ 'Delete'|trans }}</a>
-          {{ form_row(answer.title) }}
-          {{ form_row(answer.file) }}
-          {{ form_row(answer.is_right) }}
-          {{ form_rest(answer) }}
-          <hr>
-        </div>
-      {% endfor %}
-      </div>
-      <a data-form-template="{{ form_widget(form.answers.vars.prototype)|e }}" class="btn add-form-answer" href="#">{{ 'Add'|trans }}</a>
+    <form class="form form-horizontal" action="{{ path(routes.update, {"id": form.vars.value.id }) }}" method="post">
+        <div class="well">
 
-      {{ form_rest(form) }}
-      
-      <script type="text/javascript" charset="utf-8">
-        $(document).ready(function(){
-          var bindAddForm = function (parent, name) {
-             $('a.add-form-'+name).click(function (e) {
-                var parentFormText = $('.form-content-'+name);
-                var deleteLink = $('<a>').addClass('btn btn-danger pull-right delete').attr('href', '#').html('{{ "Delete"|trans }}');
-                var clone = $(this).data('form-template');
-                var newForm = clone.replace(/__name__/g, parentFormText.length);
-                var newFormDiv = $('<div></div>').addClass('form-content-'+name).append(newForm);
-                newFormDiv.prepend(deleteLink);
-                $(parent).append(newFormDiv);
-                $(parent).append(this);
-                $(parent).find('textarea').wysihtml5({
-                  "html": true, 
+            {{ form_errors(form) }}
+
+            {{ form_row(form.quiz) }}
+            {{ form_row(form.text) }}
+            {{ form_row(form.type) }}
+            {{ form_row(form.file) }}
+            {{ form_row(form.num_answers) }}
+            <hr>
+            <div id="answers">
+                {% for answer in form.answers %}
+                    <div class="form-content-answer">
+                        <a class="btn btn-danger pull-right delete" href="#">{{ 'Delete'|trans }}</a>
+                        {{ form_row(answer.title) }}
+                        {{ form_row(answer.file) }}
+                        {{ form_row(answer.is_right) }}
+                        {{ form_rest(answer) }}
+                        <hr>
+                    </div>
+                {% endfor %}
+            </div>
+            <a data-form-template="{{ form_widget(form.answers.vars.prototype)|e }}" class="btn add-form-answer" href="#">{{ 'Add'|trans }}</a>
+
+            {{ form_rest(form) }}
+
+            <script type="text/javascript" charset="utf-8">
+                $(document).ready(function () {
+                    var bindAddForm = function (parent, name) {
+                        $('a.add-form-' + name).click(function (e) {
+                            var parentFormText = $('.form-content-' + name);
+                            var deleteLink = $('<a>').addClass('btn btn-danger pull-right delete').attr('href', '#').html('{{ "Delete"|trans }}');
+                            var clone = $(this).data('form-template');
+                            var newForm = clone.replace(/__name__/g, parentFormText.length);
+                            var newFormDiv = $('<div></div>').addClass('form-content-' + name).append(newForm);
+                            newFormDiv.prepend(deleteLink);
+                            $(parent).append(newFormDiv);
+                            $(parent).append(this);
+                            $(parent).find('textarea').wysihtml5({
+                                "html":true,
+                            });
+                            return false;
+                        });
+                        $(document).on('click', '.form-content-' + name + ' a.delete', function (e) {
+                            $(this).parent().remove();
+                            return false;
+                        });
+                    }
+                    bindAddForm('#answers', 'answer');
                 });
-                return false;
-              });
-              $('.form-content-'+name+' a.delete').live('click', function (e) {
-                $(this).parent().remove();
-                return false;
-              });
-          }
-          bindAddForm('#answers', 'answer');
-        });
-      </script>
-      
-    </div>
-  </div>
-  <div class="well">
-    <a href="{{ path(routes.index) }}" class="btn">Back</a>
-    <button class="submit btn btn-primary">Save</button>
-  </div>
-</form>
+            </script>
+
+        </div>
+        <div class="well">
+            <a href="{{ path(routes.index) }}" class="btn">Back</a>
+            <button class="submit btn btn-primary">Save</button>
+        </div>
+    </form>
 
 {% endblock %}

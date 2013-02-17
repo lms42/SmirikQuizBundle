@@ -21,13 +21,12 @@ class Question extends BaseQuestion {
 	public function getTest()
 	{
 		$quizes = QuizQuestionQuery::create()
-			->select('Quiz.Title')
 			->filterByQuestionId($this->getId())
 			->groupBy('QuizId')
 			->join('Quiz')
 			->find()
-			->toArray();
-		return implode(',', $quizes);
+        ;
+        return $quizes;
 	}
 	
 	public function getQuiz()

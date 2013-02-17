@@ -1,0 +1,52 @@
+columns:
+    id:
+        template: id
+    quiz:
+        label: Quiz
+        name:  quiz
+        type:  collection
+        builder: simple
+        options:
+            editable:   true
+            listable:   true
+            sortable:   true
+            filterable: true
+    text:
+        label: Text
+        name:  text
+        type:  text
+        template: default
+    type:
+        label: Type
+        name:  type
+        template: default
+    file:
+        label: File
+        name:  file
+        type:  string
+        builder: simple
+        options:
+            editable:   true
+            listable:   false
+            sortable:   true
+            filterable: true
+    num_answers:
+        label: Number of answers
+        name:  num_answers
+        type:  integer
+        builder: simple
+        options:
+            editable:   true
+            listable:   true
+            sortable:   true
+            filterable: true
+actions:
+    create:
+        route:    admin_questions_new
+        template: create
+    edit:
+        route:    admin_questions_edit
+        template: edit
+    delete:
+        route:    admin_questions_delete
+        template: delete

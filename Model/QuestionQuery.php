@@ -18,7 +18,7 @@ use Smirik\QuizBundle\Model\om\BaseQuestionQuery;
  */
 class QuestionQuery extends BaseQuestionQuery {
 
-	public function filterByTest($text)
+    public function filterByQuiz($text, $comparison = \Criteria::EQUAL)
 	{
 		return $this
 			->useQuizQuestionQuery()
@@ -28,7 +28,10 @@ class QuestionQuery extends BaseQuestionQuery {
 		;
 	}
 	
-	public function orderByTest($type)
+	/**
+	 * @todo bug with useQuizQuery
+	 */
+	public function orderByQuiz($type)
 	{
 		return $this
 			->useQuizQuery()
