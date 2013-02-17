@@ -1,6 +1,11 @@
 services:
   quiz.manager:
-    class: Smirik\QuizBundle\Model\QuizManager
+    class: Smirik\QuizBundle\Manager\QuizManager
+  user_quiz.manager:
+    class: Smirik\QuizBundle\Manager\UserQuizManager
+  user_question.manager:
+    class: Smirik\QuizBundle\Manager\UserQuestionManager
+
   quiz.configure_menu_listener:
       class: Smirik\QuizBundle\Listener\ConfigureMenuListener
       arguments: ["@security.context", "@translator"]

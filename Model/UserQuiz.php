@@ -34,10 +34,7 @@ class UserQuiz extends BaseUserQuiz {
 		{
 			return false;
 		}
-		/**                
-		 * Check time of quiz
-		 * @todo use Server value
-		 */
+
 		$now = time();
 		$quiz_time = $this->getQuiz()->getTime();
 		if ($quiz_time > 0)
@@ -65,6 +62,7 @@ class UserQuiz extends BaseUserQuiz {
 			 * Also close users_questions
 			 */
 			$users_questions   = $this->getUserQuestions();
+
 			$num_right_answers = 0;
 			foreach ($users_questions as $question)
 			{

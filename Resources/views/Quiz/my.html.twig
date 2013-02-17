@@ -29,14 +29,14 @@
 
 <h2>{{ 'quiz.my.avaliable_tests'|trans }}</h2>
 
-{% if avaliable_quiz %}
+{% if available_quiz %}
 <table class="zebra-striped">
   <tr>
     <th>{{ 'quiz.index.table.header.quiz'|trans }}</th>
     <th>{{ 'quiz.index.table.header.start'|trans }}</th>
   </tr>
   
-  {% for quiz in avaliable_quiz %}
+  {% for quiz in available_quiz %}
     {% if (quiz.id not in active_quiz_ids) %}
     <tr>
       <td>{{ quiz.title }}</td>

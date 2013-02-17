@@ -14,9 +14,9 @@ use Smirik\PropelAdminBundle\Column\CollectionColumn;
 use Smirik\PropelAdminBundle\Action\Action;
 use Smirik\PropelAdminBundle\Action\ObjectAction;
 use Smirik\PropelAdminBundle\Action\SingleAction;
+use FOS\UserBundle\Propel\UserQuery;
 
 use Smirik\QuizBundle\Model\QuizQuery;
-use Smirik\QuizBundle\Model\UserQuiz;
 
 class AdminQuizController extends AbstractController
 {
@@ -93,14 +93,16 @@ class AdminQuizController extends AbstractController
 	public function assignAction($id)
 	{
 		$quiz = QuizQuery::create()->findPk($id);
-		$qm   = $this->get('quiz.manager');
-		
+
 		if ($this->getRequest()->isXmlHttpRequest())
 		{
-			$ids = $this->getRequest()->request->get('ids', false); 
-			foreach ($ids as $uid)
+			$ids = $this->getRequest()->request->get('ids', false);
+            $uqm = $this->get('user_quiz.manager');
+
+            $users = UserQuery::create()->findPks($ids);
+			foreach ($users as $user)
 			{
-				$user_quiz = $qm->findOrCreateUserQuiz($uid, $quiz);
+                $user_quiz = $uqm->findOrCreate($user, $quiz);
 			}
 			return new Response('{}');
 		}
