@@ -2,43 +2,17 @@
 
 namespace Smirik\QuizBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 
-use Smirik\PropelAdminBundle\Controller\AdminAbstractController as AbstractController;
-
-use Smirik\PropelAdminBundle\Column\Column;
-use Smirik\PropelAdminBundle\Column\CollectionColumn;
-use Smirik\PropelAdminBundle\Action\Action;
-use Smirik\PropelAdminBundle\Action\ObjectAction;
-use Smirik\PropelAdminBundle\Action\SingleAction;
-use FOS\UserBundle\Propel\UserQuery;
-
 use Smirik\QuizBundle\Model\QuizQuery;
+use Smirik\QuizBundle\Model\UserQuery;
 
-class AdminQuizController extends AbstractController
+use Smirik\QuizBundle\Controller\Base\AdminQuizController as BaseController;
+
+class AdminQuizController extends BaseController
 {
-
-    public $layout = 'SmirikAdminBundle::layout.html.twig';
-    public $name = 'quiz';
-    public $bundle = 'SmirikQuizBundle';
-
-    public function getQuery()
-    {
-        return \Smirik\QuizBundle\Model\QuizQuery::create();
-    }
-
-    public function getForm()
-    {
-        return new \Smirik\QuizBundle\Form\Type\QuizType;
-    }
-
-    public function getObject()
-    {
-        return new \Smirik\QuizBundle\Model\Quiz;
-    }
 
     /**
      * @Route("/admin/quiz/{id}/assign", name="admin_quiz_assign")

@@ -1,52 +1,74 @@
 columns:
     id:
-        template: id
-    quiz:
-        label: Quiz
-        name:  quiz
-        type:  collection
+        label: Id
+        name: id
+        type: integer
         builder: simple
         options:
-            editable:   true
-            listable:   true
-            sortable:   true
+            listable: true
+            editable: false
+            sortable: true
+            filterable: true
+    quiz:
+        label: Quiz
+        name: quiz
+        type: collection
+        builder: simple
+        options:
+            listable: true
+            editable: true
+            sortable: true
             filterable: true
     text:
         label: Text
-        name:  text
-        type:  text
-        template: default
+        name: text
+        type: text
+        builder: simple
+        options:
+            listable: true
+            editable: true
+            sortable: true
+            filterable: true
     type:
         label: Type
-        name:  type
-        template: default
+        name: type
+        type: string
+        builder: simple
+        options:
+            listable: true
+            editable: true
+            sortable: true
+            filterable: true
     file:
         label: File
-        name:  file
-        type:  string
+        name: file
+        type: string
         builder: simple
         options:
-            editable:   true
-            listable:   false
-            sortable:   true
+            listable: false
+            editable: true
+            sortable: true
             filterable: true
     num_answers:
-        label: Number of answers
-        name:  num_answers
-        type:  integer
+        label: 'Number of answers'
+        name: num_answers
+        type: integer
         builder: simple
         options:
-            editable:   true
-            listable:   true
-            sortable:   true
+            listable: true
+            editable: true
+            sortable: true
             filterable: true
 actions:
     create:
-        route:    admin_questions_new
-        template: create
+        route: admin_questions_new
+        extends: create
     edit:
-        route:    admin_questions_edit
-        template: edit
+        route: admin_questions_edit
+        extends: edit
     delete:
-        route:    admin_questions_delete
-        template: delete
+        route: admin_questions_delete
+        extends: delete
+templates:
+    form:
+        edit: SmirikQuizBundle:Admin/Question:edit.html.twig

@@ -1,76 +1,73 @@
 columns:
     id:
         label: Id
-        name:  id
-        type:  integer
+        name: id
+        type: integer
         builder: simple
         options:
-            editable:   false
-            listable:   true
-            sortable:   true
+            listable: true
+            editable: false
+            sortable: true
             filterable: true
-    name:
+    title:
         label: Title
-        name:  title
-        type:  string
+        name: title
+        type: string
         builder: simple
         options:
-            editable:   true
-            listable:   true
-            sortable:   true
+            listable: true
+            editable: true
+            sortable: true
             filterable: true
     description:
         label: Description
-        name:  description
-        type:  text
+        name: description
+        type: text
         builder: simple
         options:
-            editable:   true
-            listable:   false
-            sortable:   true
+            listable: false
+            editable: true
+            sortable: true
             filterable: true
     time:
         label: Time
-        name:  time
-        type:  integer
+        name: time
+        type: integer
         builder: simple
         options:
-            editable:   true
-            listable:   true
-            sortable:   true
+            listable: true
+            editable: true
+            sortable: true
             filterable: true
     num_questions:
-        label: Number of questions
-        name:  num_questions
-        type:  integer
+        label: 'Number of questions'
+        name: num_questions
+        type: integer
         builder: simple
         options:
-            editable:   true
-            listable:   true
-            sortable:   true
+            listable: true
+            editable: true
+            sortable: true
             filterable: true
     is_active:
         label: Active
-        name:  is_active
-        type:  boolean
+        name: is_active
+        type: boolean
         builder: simple
         options:
-            editable:   true
-            listable:   true
-            sortable:   true
+            listable: true
+            editable: true
+            sortable: true
             filterable: true
-        templates:
-            filter: SmirikPropelAdminBundle:Admin/Filter:boolean.html.twig
-            list:   SmirikPropelAdminBundle:Admin/Column:boolean.html.twig
     is_opened:
         label: Opened
-        name:  is_opened
-        type:  boolean
+        name: is_opened
+        type: boolean
         builder: simple
         options:
-            editable:   true
-            listable:   true
-            sortable:   true
+            listable: true
+            editable: true
+            sortable: true
             filterable: true
 actions:
     assign:
@@ -82,26 +79,11 @@ actions:
             route_with_id: true
             confirmation: true
     create:
-        label:   Create
-        name:    create
-        route:   admin_quiz_new
-        builder: single
-        options:
-            route_with_id: false
-            confirmation: false
+        route: admin_quiz_new
+        extends: create
     edit:
-        label:   Edit
-        name:    edit
-        route:   admin_quiz_edit
-        builder: object
-        options:
-            route_with_id: true
-            confirmation: false
+        route: admin_quiz_edit
+        extends: edit
     delete:
-        label:   Delete
-        name:    delete
-        route:   admin_quiz_delete
-        builder: object
-        options:
-            route_with_id: true
-            confirmation: true
+        route: admin_quiz_delete
+        extends: delete
