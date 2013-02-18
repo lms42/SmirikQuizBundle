@@ -1,8 +1,0 @@
-{% block generic_label %}
-{% spaceless %}
-    {% if required %}
-        {% set attr = attr|merge({'class': attr.class|default('') ~ ' required'}) %}
-    {% endif %}
-    <label{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>{{ ('form.'~label)|trans({}) }}</label>
-{% endspaceless %}
-{% endblock %}

@@ -160,7 +160,7 @@ class QuizController extends Controller
 
         $number = $this->getRequest()->request->get('number', false);
 
-        if ((!$user_quiz_id) || (!$question_id) || (!$answer_id)) {
+        if ((!$user_quiz_id) || (!$question_id) || (!($answer_id || $answer_text)) ) {
             throw $this->createNotFoundException('Error in application: no required parameters');
         }
 
