@@ -5,6 +5,7 @@ namespace Smirik\QuizBundle\Manager;
 use Smirik\QuizBundle\Model\UserQuizQuery;
 use Smirik\QuizBundle\Model\QuestionQuery;
 use Smirik\QuizBundle\Model\UserQuiz;
+use FOS\UserBundle\Propel\UserQuery;
 
 class UserQuizManager
 {
@@ -131,5 +132,28 @@ class UserQuizManager
         return $user_quiz;
     }
 
-
+    /**
+     * Assign users to the quiz
+     * @param \Smirik\QuizBundle\Model\Quiz $quiz
+     * @param array $users_ids
+     * @return string
+     */
+    public function assign($quiz, $users_ids)
+    {
+        $users = UserQuery::create()->findPks($users_ids);
+        foreach ($users as $user) {
+            $user_quiz = $this->findOrCreate($user, $quiz);
+        }
+    }
+    
+    public function findByUsers($quiz, $users_ids)
+    {
+        $users_quiz = UserQuizQuery::create()
+            ->filterByUserId($users_ids)
+            ->filterByQuizId($quiz->getId())
+            ->joinUser()
+            ->find();
+        return $users_quiz;
+    }
+    
 }
