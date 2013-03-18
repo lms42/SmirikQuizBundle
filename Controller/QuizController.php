@@ -120,16 +120,16 @@ class QuizController extends Controller
         $answers = $question->getAnswers();
 
         return array(
-            'user_quiz' => $user_quiz,
-            'quiz' => $user_quiz->getQuiz(),
-            'question' => $question,
-            'user_question' => $user_question,
-            'number' => $number,
-            'total' => count($questions),
-            'current_answer' => $current_answer,
+            'user_quiz'         => $user_quiz,
+            'quiz'              => $user_quiz->getQuiz(),
+            'question'          => $question,
+            'user_question'     => $user_question,
+            'number'            => $number,
+            'total'             => count($questions),
+            'current_answer'    => $current_answer,
             'current_answer_id' => $current_answer_id,
-            'answers' => $answers,
-            'num_answers' => count($answers),
+            'answers'           => $answers,
+            'num_answers'       => count($answers),
         );
     }
 
