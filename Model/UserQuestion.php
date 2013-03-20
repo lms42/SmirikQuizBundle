@@ -16,7 +16,7 @@ class UserQuestion extends BaseUserQuestion
         }
 
         if ($answer_text !== false) {
-            if (strcasecmp($answer->getIsRight(), $answer_text) === 0) {
+            if (mb_strtolower($answer->getIsRight(), 'UTF-8') == mb_strtolower($answer_text, 'UTF-8')) {
                 $this->setIsRight(true);
             } else {
                 $this->setIsRight(false);
