@@ -16,7 +16,7 @@ class UserQuestion extends BaseUserQuestion
         }
 
         if ($answer_text !== false) {
-            if (mb_strtolower($answer->getIsRight()) == mb_strtolower($answer_text)) {
+            if (strcasecmp($answer->getIsRight(), $answer_text) === 0) {
                 $this->setIsRight(true);
             } else {
                 $this->setIsRight(false);
