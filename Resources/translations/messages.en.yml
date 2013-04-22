@@ -94,7 +94,7 @@ admin.questions.list.type: Question type
 # index page
 quiz.index.link:                List of quizes
 quiz.index.page_title:          List of quizes
-quiz.index.title.comment:       avaliable
+quiz.index.title.comment:       available
 quiz.index.table.header.quiz:   Quiz
 quiz.index.table.header.start:  Action
 quiz.index.table.header.status: Status
@@ -102,13 +102,13 @@ quiz.index.table.start_link:    Start
 quiz.index.table.continue_link: Continue
 quiz.index.my_link:             My
 quiz.quiz.active:               active
-quiz.quiz.success:              avaliable
+quiz.quiz.success:              available
 
 # my quiz page 
 quiz.my.page_title:      My
 quiz.my.title.comment:   list
 quiz.my.active_tests:    Active quizes
-quiz.my.avaliable_tests: Avaliable quizes
+quiz.my.available_tests: Available quizes
 quiz.my.completed_tests: Completed quizes
 quiz.my.table.header.num_right_answers: Right answers
 quiz.my.table.header.percent:    %

@@ -25,7 +25,7 @@ class QuizController extends Controller
 {
 
     /**
-     * Show user avaliable quizes.
+     * Show user available quizes.
      *
      * @Route("/", name="smirik_quiz_index")
      * @Secure(roles="ROLE_USER")
