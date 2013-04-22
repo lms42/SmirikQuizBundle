@@ -12,3 +12,5 @@ services:
       tags:
         - { name: kernel.event_listener, event: admin.menu_configure, method: onMenuConfigure }    
         - { name: kernel.event_listener, event: main.menu_configure, method: onMainMenuConfigure }    
+  question.manager:
+      class: Smirik\QuizBundle\Manager\QuestionManager
