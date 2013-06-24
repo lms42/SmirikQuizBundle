@@ -1,8 +1,8 @@
 {
-    "name": "smirik/quiz-bundle",
+    "name": "lms42/quiz-bundle",
     "description": "Quiz bundle.",
     "keywords": ["quiz"],
-    "homepage": "https://4xxi.com",
+    "homepage": "https://lms42.com",
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
@@ -12,19 +12,6 @@
             "homepage": "http://4xxi.com"
         }
     ],
-    "require": {
-      "symfony/framework-bundle": "2.*",
-      "propel/propel-bundle": "1.1.*",
-      "willdurand/propel-typehintable-behavior": "*",
-      "imagine/Imagine": "*",
-      "avalanche123/imagine-bundle": "*",
-      "smirik/bootstrap-bundle": "*",
-      "smirik/propel-admin-bundle": "*",
-      "smirik/admin-bundle": "*",
-      "friendsofsymfony/user-bundle": "*",
-      "knplabs/knp-menu-bundle": "*",
-      "knplabs/knp-menu": "2.0.*"
-    },
     "autoload": {
         "psr-0": { "Smirik\\QuizBundle": "" }
     },
