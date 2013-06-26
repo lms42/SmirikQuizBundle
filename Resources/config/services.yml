@@ -1,8 +1,10 @@
 services:
   quiz.manager:
     class: Smirik\QuizBundle\Manager\QuizManager
+
   user_quiz.manager:
     class: Smirik\QuizBundle\Manager\UserQuizManager
+
   user_question.manager:
     class: Smirik\QuizBundle\Manager\UserQuestionManager
 
@@ -11,6 +13,7 @@ services:
       arguments: ["@security.context", "@translator"]
       tags:
         - { name: kernel.event_listener, event: admin.menu_configure, method: onMenuConfigure }    
-        - { name: kernel.event_listener, event: main.menu_configure, method: onMainMenuConfigure }    
-  question.manager:
+        - { name: kernel.event_listener, event: main.menu_configure, method: onMainMenuConfigure }
+
+  quiz.question.manager:
       class: Smirik\QuizBundle\Manager\QuestionManager
