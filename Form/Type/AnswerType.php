@@ -4,6 +4,7 @@ namespace Smirik\QuizBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class AnswerType extends AbstractType
 {
@@ -16,9 +17,13 @@ class AnswerType extends AbstractType
             ->add('is_right');
     }
 
-    public function getDefaultOptions(array $options)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array('data_class' => 'Smirik\QuizBundle\Model\Answer');
+        $resolver->setDefaults(
+            array(
+                'data_class' => 'Smirik\QuizBundle\Model\Answer'
+            )
+        );
     }
 
     public function getName()
