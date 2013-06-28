@@ -8,12 +8,9 @@ use Smirik\QuizBundle\Model\UserQuestionQuery;
 
 class QuestionManager
 {
-    
     public function getByIds($ids)
     {
-        return QuestionQuery::create()
-            ->findPks($ids)
-        ;
+        return QuestionQuery::create()->findPks($ids);
     }
     
     public function getUserQuestions($user_quiz)
