@@ -26,16 +26,19 @@ class UserQuizManager
     }
 
     /**
-     * @param $user
-     * @return PropelObjectCollection
+     * Get completed quiz
+     * @param  \FOS\UserBundle\Propel\User|int  $user
+     * @param  int [$limit=null]
+     * @return \PropelObjectCollection
      */
-    public function completed($user)
+    public function completed($user, $limit = null)
     {
         return
             UserQuizQuery::create()
                 ->filterByUserId($user->getId())
                 ->filterByIsClosed(true)
                 ->orderByCreatedAt('desc')
+                ->limit($limit)
                 ->find();
     }
 

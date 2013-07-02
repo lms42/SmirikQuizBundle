@@ -23,7 +23,6 @@ use Smirik\QuizBundle\Model\UserQuizQuery;
  */
 class QuizController extends Controller
 {
-
     /**
      * Show user available quizes.
      *
