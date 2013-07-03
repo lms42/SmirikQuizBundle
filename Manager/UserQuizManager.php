@@ -9,7 +9,6 @@ use FOS\UserBundle\Propel\UserQuery;
 
 class UserQuizManager
 {
-
     /**
      * Return collection of active quiz related to the user
      * @param $user
