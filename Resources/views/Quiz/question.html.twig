@@ -3,9 +3,7 @@
 {% block title %}{{ 'quiz.question.page_title'|trans }}{% endblock %}
 
 {% block header %}
-    <h1>{{ quiz.title }}
-        <small>{{ 'quiz.question.title.comment'|trans }}</small>
-    </h1>
+    {{ quiz.title }} <small>{{ 'quiz.question.title.comment'|trans }}</small>
 {% endblock %}
 
 {% block content %}
