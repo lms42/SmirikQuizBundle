@@ -33,11 +33,19 @@ class ConfigureMenuListener
         $menu = $event->getMenu();
 
         $user = $this->security_context->getToken()->getUser();
-        $id = false;
+
+
         if ($this->security_context->isGranted('ROLE_USER')) {
-            $id = $user->getId();
-            $menu['My cabinet']->addChild('Quizes results', array('route' => 'quiz_results'));
-            $menu['My cabinet']->addChild('Quizes list', array('route' => 'smirik_quiz_index'));
+
+            $menu->addChild('Quizes', array('route' => 'smirik_quiz_index'));
+
+            $key = 'Results';
+
+            if (!isset($menu[$key])) {
+                $menu->addChild($key, array('route' => 'account_my'));
+            }
+
+            $menu[$key]->addChild('Quizes results', array('route' => 'quiz_results'));
 
             $active_quiz = UserQuizQuery::create()
                 ->filterByUserId($user->getId())
