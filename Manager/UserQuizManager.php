@@ -26,11 +26,11 @@ class UserQuizManager
 
     /**
      * Get completed quiz
-     * @param  \FOS\UserBundle\Propel\User|int  $user
+     * @param  \FOS\UserBundle\Propel\User  $user
      * @param  int [$limit=null]
      * @return \PropelObjectCollection
      */
-    public function completed($user, $limit = null)
+    public function completed(\FOS\UserBundle\Propel\User $user, $limit = null)
     {
         return
             UserQuizQuery::create()
