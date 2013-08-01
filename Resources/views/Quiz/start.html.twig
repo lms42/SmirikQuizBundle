@@ -3,7 +3,17 @@
 {% block title %}{{ 'quiz.start.page_title'|trans }}{% endblock %}
 
 {% block header %}
-<h1>{{ 'quiz.start.page_title'|trans }} <small>{{ 'quiz.start.title.comment'|trans }}</small></h1>
+    {{ 'quiz.start.page_title'|trans }} <small>{{ 'quiz.start.title.comment'|trans }}</small>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include "SmirikCoreBundle:Menu:breadcrumbs.html.twig" with {
+        items: [
+            {},
+            {label: "Тесты", uri: path("smirik_quiz_index")},
+            {label: quiz.title, uri: "#"},
+        ]}
+    %}
 {% endblock %}
 
 {% block content %}

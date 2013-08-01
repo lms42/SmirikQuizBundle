@@ -9,7 +9,6 @@ use FOS\UserBundle\Propel\UserQuery;
 
 class UserQuizManager
 {
-
     /**
      * Return collection of active quiz related to the user
      * @param $user
@@ -26,16 +25,19 @@ class UserQuizManager
     }
 
     /**
-     * @param $user
-     * @return PropelObjectCollection
+     * Get completed quiz
+     * @param  \FOS\UserBundle\Propel\User  $user
+     * @param  int [$limit=null]
+     * @return \PropelObjectCollection
      */
-    public function completed($user)
+    public function completed(\FOS\UserBundle\Propel\User $user, $limit = null)
     {
         return
             UserQuizQuery::create()
                 ->filterByUserId($user->getId())
                 ->filterByIsClosed(true)
                 ->orderByCreatedAt('desc')
+                ->limit($limit)
                 ->find();
     }
 
