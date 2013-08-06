@@ -6,6 +6,20 @@
     {{ 'Quizes'|trans }} <small>{{ 'results'|trans }}</small>
 {% endblock %}
 
+{% block breadcrumbs %}
+    <ul class="pull-right breadcrumb">
+        <li>
+            <a href="{{ path("homepage") }}" title="dashboard">Главная</a>
+            <span class="divider">/</span>
+        </li>
+        <li>
+            <a href="{{ path("account_my") }}">Результаты</a>
+            <span class="divider">/</span>
+        </li>
+        <li>{{ "Тесты"|trans }}</li>
+    </ul>
+{% endblock %}
+
 {% block content %}
 
   <table class="table table-bordered table-striped">
