@@ -60,9 +60,9 @@ columns:
             sortable: true
             filterable: true
 actions:
-    create:
+    new:
         route: admin_questions_new
-        extends: create
+        extends: new
     edit:
         route: admin_questions_edit
         extends: edit

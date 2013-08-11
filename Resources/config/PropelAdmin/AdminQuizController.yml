@@ -78,9 +78,9 @@ actions:
         options:
             route_with_id: true
             confirmation: true
-    create:
+    new:
         route: admin_quiz_new
-        extends: create
+        extends: new
     edit:
         route: admin_quiz_edit
         extends: edit
