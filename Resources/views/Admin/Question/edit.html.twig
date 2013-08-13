@@ -3,15 +3,14 @@
 {% block title %}{{ 'admin.questions.edit.page_title'|trans }}{% endblock %}
 
 {% block header %}
-    {{ 'admin.questions.edit.page_title'|trans }}
-    <small>{{ 'admin.questions.edit.title.comment'|trans }}</small>
 {% endblock %}
 
 {% block content %}
 
     <form class="form form-horizontal" action="{{ path(routes.update, {"id": form.vars.value.id }) }}" method="post">
-        <div class="well">
-
+		<legend>{{ 'admin.questions.edit.page_title'|trans }}
+    <small>{{ 'admin.questions.edit.title.comment'|trans }}</small></legend>
+		<div class="accordion" id="accordion-question">
             {{ form_errors(form) }}
 
             {{ form_row(form.quiz) }}
@@ -22,6 +21,25 @@
             <hr>
             <div id="answers">
                 {% for answer in form.answers %}
+					<div class="accordion-group form-content-answer">
+			            <div class="pull-right remove">
+			                <a class="btn btn-small btn-danger delete" href="#"><i class="icon-remove"></i> {{ 'Delete'|trans }}</a>
+			            </div>
+						<div class="accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-question" href="#collapse-{{ answer.vars.value.id }}">
+							{{ 'Answer'|trans }} #{{ loop.index}}: {{ answer.vars.value.title }}
+							</a>
+						</div>
+						<div id="collapse-{{ answer.vars.value.id }}" class="accordion-body collapse">
+							<div class="accordion-inner">
+		                        {{ form_row(answer.title) }}
+		                        {{ form_row(answer.file) }}
+		                        {{ form_row(answer.is_right) }}
+		                        {{ form_rest(answer) }}
+							</div>
+						</div>
+					</div>
+					{% if false %}
                     <div class="form-content-answer">
                         <a class="btn btn-danger pull-right delete" href="#">{{ 'Delete'|trans }}</a>
                         {{ form_row(answer.title) }}
@@ -30,7 +48,9 @@
                         {{ form_rest(answer) }}
                         <hr>
                     </div>
+					{% endif %}
                 {% endfor %}
+				<hr>
             </div>
             <a data-form-template="{{ form_widget(form.answers.vars.prototype)|e }}" class="btn add-form-answer" href="#">{{ 'Add'|trans }}</a>
 
@@ -41,7 +61,7 @@
                     var bindAddForm = function (parent, name) {
                         $('a.add-form-' + name).click(function (e) {
                             var parentFormText = $('.form-content-' + name);
-                            var deleteLink = $('<a>').addClass('btn btn-danger pull-right delete').attr('href', '#').html('{{ "Delete"|trans }}');
+                            var deleteLink = $('<a>').addClass('btn btn-danger pull-right delete-prototype').attr('href', '#').html('{{ "Delete"|trans }}');
                             var clone = $(this).data('form-template');
                             var newForm = clone.replace(/__name__/g, parentFormText.length);
                             var newFormDiv = $('<div></div>').addClass('form-content-' + name).append(newForm);
@@ -54,6 +74,10 @@
                             return false;
                         });
                         $(document).on('click', '.form-content-' + name + ' a.delete', function (e) {
+                            $(this).parent().parent().remove();
+                            return false;
+                        });
+                        $(document).on('click', '.form-content-' + name + ' a.delete-prototype', function (e) {
                             $(this).parent().remove();
                             return false;
                         });
@@ -61,11 +85,11 @@
                     bindAddForm('#answers', 'answer');
                 });
             </script>
-
-        </div>
+		</div>
         <div class="well">
             <a href="{{ path(routes.index) }}" class="btn">{{ 'Back'|trans }}</a>
-            <button class="submit btn btn-primary">{{ 'Save'|trans }}</button>
+            <button name="save" class="submit btn btn-primary">{{ 'Save'|trans }}</button>
+            <button name="save_and_return" class="submit btn btn-primary">{{ 'Save and return'|trans }}</button>
         </div>
     </form>
 
