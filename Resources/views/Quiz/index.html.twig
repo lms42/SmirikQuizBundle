@@ -6,6 +6,16 @@
     {{ 'quiz.my.page_title'|trans }} <small>{{ 'quiz.my.title.comment'|trans }}</small>
 {% endblock %}
 
+{% block breadcrumbs %}
+    <ul class="pull-right breadcrumb">
+        <li>
+            <a href="{{ path("homepage") }}" title="dashboard">Главная</a>
+            <span class="divider">/</span>
+        </li>
+        <li>{{ "Тесты"|trans }}</li>
+    </ul>
+{% endblock %}
+
 {% block content %}
 
 {% if users_quiz|length or available_quiz|length %}
@@ -26,7 +36,7 @@
           </td>
         </tr>
       {% endfor %}
-  
+
       {% for quiz in available_quiz %}
         {% if (quiz.id not in active_quiz_ids) %}
         <tr>
