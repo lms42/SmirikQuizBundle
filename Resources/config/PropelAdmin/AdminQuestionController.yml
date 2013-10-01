@@ -29,6 +29,8 @@ columns:
             editable: true
             sortable: true
             filterable: true
+        templates:
+            list: SmirikQuizBundle:Admin/Column:text.html.twig
     type:
         label: Type
         name: type
